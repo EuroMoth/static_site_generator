@@ -13,6 +13,8 @@ class HTMLNode:
 
 	def props_to_html(self):
 		prop_string = " "
+		if self.props == None:
+			return ""
 		for key, value in self.props.items():
 			prop_string += f"{key}=\"{value}\" "
 		return prop_string
@@ -58,16 +60,19 @@ class ParentNode(HTMLNode):
 		if self.tag == None:
 			raise ValueError("Object must have tag")
 
+		#if self.props == None:
+		#	html_props = ""
+		#else:
+			#html_props = self.props_to_html()
+
 		if self.children == None:
 			raise ValueError("Object must have children")
 		else:
+			child_nodes = ""
 			for child in self.children:
 				if not child.is_parent():
-					if child.props == None:
-						print("OptionA")
-						return f"<{self.tag}>{child.to_html()}</{self.tag}>"
-					else:
-						print("OptionB")
-						return f"<{self.tag}{child.props_to_html()}>{child.to_html()}</{self.tag}>"
+					child_nodes += f"{child.to_html()}"
 				else:
-					child.to_html()
+					child_nodes += f"{child.to_html()}"
+			node_tree = f"<{self.tag}{self.props_to_html()}>{child_nodes}</{self.tag}>"
+			return node_tree
