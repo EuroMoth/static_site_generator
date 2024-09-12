@@ -40,7 +40,7 @@ class LeafNode(HTMLNode):
 			raise ValueError
 
 		if self.tag == None:
-			return f"{value}"
+			return f"{self.value}"
 
 		if self.props == None:
 			props_string = ""
