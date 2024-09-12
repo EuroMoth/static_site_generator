@@ -57,6 +57,11 @@ class TestHTMLNode(unittest.TestCase):
 		#print(f"\nlevel_three:{html}")
 		self.assertEqual(html, "<body><article test_prop=\"this-is-a-test\"><section test=\"another test\"><p>This is a paragraph</p><b>BOLD</b></section><span prop=\"a prop\">Spannin!</span></article></body>")
 
+	def test_parent_no_children(self):
+		with self.assertRaises(ValueError):
+			node = ParentNode("body", None, None)
+			html = node.to_html()
+
 
 if __name__ == "__main__":
 	unittest.main()
