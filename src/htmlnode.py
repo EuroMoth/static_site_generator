@@ -17,7 +17,7 @@ class HTMLNode:
 			return ""
 		for key, value in self.props.items():
 			prop_string += f"{key}=\"{value}\" "
-		return prop_string
+		return prop_string.rstrip()
 
 	def __eq__(self, other):
 		if self.tag == other.tag and self.value == other.value and self.children == other.children and self.props == other.props:
